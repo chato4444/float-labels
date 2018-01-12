@@ -1,64 +1,63 @@
-.float-labels .float-labels__element {
-    position: relative;
+.float-labels {
+    &__element {
+        position: relative;
 
-    label {
-        color: #aaa;
-        cursor: text;
-        font-size: 14px;
-        font-weight: 300;
-        left: 0;
-        padding: 3px 10px;
-        position: absolute;
-        right: 0;
-        text-align: left;
-        top: 8px;
-        transition:0.2s ease all;
-        z-index: 1;
-        -moz-transition:0.2s ease all;
-        -webkit-transition:0.2s ease all;
+        label {
+            color: #aaa;
+            cursor: text;
+            font-size: 14px;
+            font-weight: 300;
+            left: 0;
+            padding: 3px 10px;
+            position: absolute;
+            right: 0;
+            text-align: left;
+            top: 10px;
+            transition: 0.2s ease all;
+            z-index: 1;
 
-        span {
-            background-color: transparent;
-            color: white;
-            display: inline-block;
-            padding: 3px 8px;
+
+            span {
+                background-color: transparent;
+                color: #999;
+                display: inline-block;
+                padding: 3px 8px;
+            }
         }
-    }
 
-    &.hasValue label {
-        font-size: 13px;
-        top: -4px;
-
-        span {
-            color: rgba(255,255,255,.5);
-        }
-    }
-
-    &--textarea {
         &.hasValue label {
-            top: 2px;
+            font-size: 13px;
+            top: 0px;
+
+            span {
+                //background-color: white; // Enable and adjust top position to overlap top border
+            }
+        }
+
+        &--textarea {
+            &.hasValue label {
+                top: 1px;
+            }
+
+            textarea {
+                padding-top: 25px;
+
+                label {
+                    top: 26px;
+                    line-height: 1.2;
+                }
+            }
+        }
+
+        input {
+            background-color: transparent;
+            padding: 24px 15px 10px 15px;
         }
 
         textarea {
-            padding-top: 25px;
-
-            label {
-                top: 26px;
-                line-height:1.2;
-            }
+            padding-left: 18px;
+            padding-right: 18px;
         }
-    }
-
-    input {
-        background-color: transparent;
-        padding: 18px 15px 4px 15px;
-    }
-
-
-
-    /* Hide <br/> tags automatically injected from Contact Form 7 plugin */
-    br {
-        display: none;
     }
 }
 

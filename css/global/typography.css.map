@@ -1,0 +1,1 @@
+{"version":3,"file":"../../scss/global/typography.css","sources":["global/typography.scss"],"sourcesContent":["body {\r\n    font-family: sans-serif;\r\n    color: #444;\r\n}"],"names":[],"mappings":"AAAA,AAAA,IAAI,AAAC,CACD,WAAW,CAAE,UAAU,CACvB,KAAK,CAAE,IAAI,CACd"}

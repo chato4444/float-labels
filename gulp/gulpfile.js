@@ -1,11 +1,17 @@
-var gulp        = require('gulp');
+/**
+ * Use npm i -f to bypass fsevents error
+ */
+
+var browserSync = require('browser-sync').create();
 var compass     = require('compass-importer');
+var concat      = require('gulp-concat');
+var config      = require('./local.json');
+var gulp        = require('gulp');
 var sass        = require('gulp-sass');
 var sourcemaps  = require('gulp-sourcemaps');
-var browserSync = require('browser-sync').create();
-
-var config = require('./local.json');
-
+var uglify      = require('gulp-uglify');
+var rename      = require('gulp-rename');
+var jsDest      = '../js/';
 
 gulp.task('sass', function() {
     return gulp.src('../scss/**/*.scss')
@@ -23,7 +29,16 @@ gulp.task('sass', function() {
         .pipe(browserSync.stream());
 });
 
-gulp.task('serve', ['sass'], function(){
+gulp.task('js-min', function(){
+    return gulp.src(['../js/jquery.float-label.js'])
+        //.pipe(concat('concat.js'))
+        //.pipe(gulp.dest(jsDest))
+        .pipe(uglify())
+        .pipe(rename({extname: '.min.js'}))
+        .pipe(gulp.dest(jsDest));
+});
+
+gulp.task('serve', ['sass', 'js-min'], function(){
     browserSync.init({
         port    : 8080,
         proxy   : config.domain,
@@ -52,7 +67,7 @@ gulp.task('serve', ['sass'], function(){
     });
 
     gulp.watch('../scss/**/*.scss', ['sass']);
-    gulp.watch('../js/*.js').on('change', browserSync.reload);
+    gulp.watch('../js/*.js', ['js-min']).on('change', browserSync.reload);
     gulp.watch('../**/*.php').on('change', browserSync.reload);
 });
 
